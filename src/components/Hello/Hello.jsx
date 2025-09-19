@@ -119,12 +119,20 @@ function Hello({ nom, children }) {
                     )
                 }
             </ul>
+            <h2>Evenements</h2>
+            <button onClick={direBonjour}>
+              afficher Bonjour
+            </button>
     </div>
-  );
-  function afficherBonjour() {
-    return `Bonjour ${firstname}`;
-  }
+      )
+    function afficherBonjour() {
+        return `Bonjour ${firstname}`
+    }
 }
+function direBonjour() {
+    alert(`Bonjour`)
+}
+
 
 export default Hello;
 // function Hello(props) {
