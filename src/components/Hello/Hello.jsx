@@ -123,16 +123,18 @@ function Hello({ nom, children }) {
             <button onClick={direBonjour}>
               afficher Bonjour
             </button>
+             <button onClick={() =>direBonjour('Travolta')}>
+              afficher Bonjour
+            </button>
     </div>
       )
     function afficherBonjour() {
         return `Bonjour ${firstname}`
     }
 }
-function direBonjour() {
-    alert(`Bonjour`)
+function direBonjour(param = 'Doe') {
+    alert(`Bonjour ${param}`)
 }
-
 
 export default Hello;
 // function Hello(props) {
