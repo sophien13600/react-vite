@@ -35,7 +35,7 @@ export default function Primeur() {
                 {
                     produits.map((p,ind) =>
                         <li key={p.nom}>
-                            <Produit {...p}sendQuantite={() =>ajoutTotal(, ind)} />
+                            <Produit {...p} sendQuantite={(value) =>ajoutTotal(value,ind)} />
                         </li>
                         
                     )

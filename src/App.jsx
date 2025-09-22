@@ -8,6 +8,7 @@ import Calculette from './components/Calculette'
 import Compteur from './components/Compteur'
 import Onoff from './components/OnOff'
 import { useState } from 'react'
+import Clavier from './components/Clavier'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Calculette />
       <Compteur />
       <Onoff />
+      <Clavier />
   
      
     </>
