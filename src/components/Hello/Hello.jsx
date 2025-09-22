@@ -1,8 +1,10 @@
 // composant fonctionnel
 import classNames from "classnames";
 import "./Hello.css";
+import { useRef } from "react";
 
-function Hello({ nom, children }) {
+function Hello({ nom, children,sendData }) {
+  let valeur = useRef('Bonjour')
   const numbers = [2, 3, 8, 5, 1];
   const objet = { nom: "Wick", prenom: "John" };
   const firstname = "MacGyver";
@@ -28,6 +30,37 @@ function Hello({ nom, children }) {
     { id: 102, nom: "Marley", prenom: "Bob" },
     { id: 103, nom: "Segal", prenom: "Steven" },
   ];
+  let pays =useRef()
+
+  
+    function afficherTexte(event) {
+        console.log(event);
+        console.log(event.target.value);
+        
+    }
+    let input =""
+    function recupererText(event){
+      input = event.target.value
+      return input
+    }
+    function afficher (event){
+      console.log(event.target.value);
+    
+      alert(input)
+    }
+    // function updateValue(e) {
+    //     setValue(e.target.value)
+
+    // }
+    // function afficherValue() {
+    //     alert(value)
+    // }
+    function afficherValeur() {
+      alert(valeur.current.value)
+    }
+    function envoyer(){
+      sendData(pays.current.value)
+    }
   return (
     <div>
       <h2>Props</h2>
@@ -126,6 +159,27 @@ function Hello({ nom, children }) {
              <button onClick={() =>direBonjour('Travolta')}>
               afficher Bonjour
             </button>
+            <div>
+                <label htmlFor="texte">Texte</label>
+                <input type="text" onInput={afficherTexte} />
+            </div>
+            <div>
+              <input type="text" onInput ={recupererText} />
+              <button onClick = {afficher}>Afficher</button>
+            </div>
+            <div>
+                <label htmlFor="valeur">Valeur</label>o
+                <input type="text" id='valeur' ref={valeur}  />
+                <button onClick={afficherValeur}>afficher</button>
+            </div>
+        <h2>De l'Enfant au Parent</h2>
+            <div>
+                <input type="text" placeholder='Pays' ref={pays} />
+                <button onClick={envoyer}>
+                    Envoyer au parent
+                </button>
+            </div>
+        
     </div>
       )
     function afficherBonjour() {

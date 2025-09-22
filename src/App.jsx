@@ -4,9 +4,17 @@ import './App.css'
 import Hi from './components/Hi'
 import Hello from './components/Hello/Hello'
 import Primeur from './components/Primeur'
+import Calculette from './components/Calculette'
+import Compteur from './components/Compteur'
+import Onoff from './components/OnOff'
+import { useState } from 'react'
+
 
 function App() {
-
+  const [country, setCountry] =useState('')
+  function afficherPays(value){
+    setCountry(value)
+  }
 
   return (
     <>
@@ -18,11 +26,14 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React en {country}</h1>
       <Hi nom="Wick">Aix</Hi>
-      <Hello nom='Dalton'> Marseille</Hello>
-      <Primeur/>
-
+      <Hello nom='Dalton' sendData={afficherPays}> Marseille</Hello>
+      <Primeur />
+      <Calculette />
+      <Compteur />
+      <Onoff />
+  
      
     </>
   )
