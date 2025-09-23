@@ -156,12 +156,14 @@
 //     )
 // }
 
-import { createContext, useRef, useState } from "react"
+import { createContext, useContext, useRef, useState } from "react"
 import Produit from "./Produit"
+import { GlobalContext } from "../contexts/GlobalContext"
 const TVA = 0.2
 export const TvaContext = createContext(TVA)
 
 export default function Primeur() {
+    const { ajouterLigneCommande } = useContext(GlobalContext)
     let [produits, setProduits] = useState([
         { nom: "banane", prix: 3, quantite: 10 },
         { nom: "fraise", prix: 10, quantite: 20 },
@@ -183,6 +185,7 @@ export default function Primeur() {
     const calculerTotal = (qteReservee, ind) => {
         console.log(qteReservee, ind);
         setTotal(total + qteReservee * produits[ind].prix)
+        ajouterLigneCommande({ produit: produits[ind], qteReservee })
     }
     return (
         <>

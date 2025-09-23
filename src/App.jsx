@@ -11,6 +11,7 @@ import { useState } from 'react'
 import Clavier from './components/Clavier'
 import Container from './components/Container'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Panier from './components/Panier'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Hi nom="Wick">Aix</Hi>
       <Hello nom='Dalton' sendData={afficherPays}> Marseille</Hello>
       <Primeur />
+      <Panier />
       <Calculette />
       <Compteur />
       <Onoff />
