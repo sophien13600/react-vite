@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Touche from "./Touche";
+import Touche from "../components/Touche";
 
 export default function Clavier() {
   let lettres = [
@@ -30,11 +30,10 @@ export default function Clavier() {
     "y",
     "z",
   ];
-  const [saisie,setSaisie] = useState('')
-  function ajoutLettre(lettre){
-      //console.log(lettre);
-      setSaisie(saisie  + lettre)
-      
+  const [saisie, setSaisie] = useState("");
+  function ajoutLettre(lettre) {
+    //console.log(lettre);
+    setSaisie(saisie + lettre);
   }
   return (
     <div>
@@ -44,15 +43,17 @@ export default function Clavier() {
         {/* {lettres.map((lettre, index) => (
           <Touche key={index} value={lettre} sendTouche= {(value) =>ajoutLettre(value, lettre)} />
         ))} */}
-         {lettres.map((lettre, index) => (
-          <Touche key={index} value={lettre} onSendLetter={()=>ajoutLettre(lettre)} />
+        {lettres.map((lettre, index) => (
+          <Touche
+            key={index}
+            value={lettre}
+            onSendLetter={() => ajoutLettre(lettre)}
+          />
         ))}
       </div>
     </div>
   );
 }
-
-
 
 // import { useState } from "react"
 // import Touche from "./Touche"

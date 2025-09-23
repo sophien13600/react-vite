@@ -7,7 +7,7 @@
 // }
 
 import { useContext } from "react"
-import { TvaContext } from "./Primeur"
+import { TvaContext } from "../views/Primeur"
 
 export default function Prix({prixHt}) {
 
