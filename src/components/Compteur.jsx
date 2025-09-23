@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useEffect } from "react"
 import { useRef } from "react"
+import Controls from "./Controls"
 
 export default function Compteur(){
 
@@ -52,7 +53,7 @@ export default function Compteur(){
     //         setSigne('nul')
     //     }
     // }
-
+    
      function decrementer(){
         const value = counter -(pas.current.value)
         setCounter(value)
@@ -83,14 +84,8 @@ export default function Compteur(){
 
     return(
         <div>
-            
-            <button onClick={decrementer}>
-                -
-            </button>
             <span style={{color}}>{counter}</span>
-            <button onClick={incrementer}>
-                +
-            </button>
+           <Controls decrementer={decrementer} incrementer={incrementer} /> 
             <label htmlFor="">Ajuster le pas</label>
             <input type="number" ref={pas}/>
         <h2>Compteur: Signe est :{signe}</h2>

@@ -1,10 +1,12 @@
 // composant fonctionnel
 import classNames from "classnames";
 import "./Hello.css";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
-function Hello({ nom, children,sendData }) {
-  let valeur = useRef('Bonjour')
+function Hello({ nom, children, sendData }) {
+  const { message } = useContext(GlobalContext);
+  let valeur = useRef("Bonjour");
   const numbers = [2, 3, 8, 5, 1];
   const objet = { nom: "Wick", prenom: "John" };
   const firstname = "MacGyver";
@@ -30,37 +32,35 @@ function Hello({ nom, children,sendData }) {
     { id: 102, nom: "Marley", prenom: "Bob" },
     { id: 103, nom: "Segal", prenom: "Steven" },
   ];
-  let pays =useRef()
+  let pays = useRef();
 
-  
-    function afficherTexte(event) {
-        console.log(event);
-        console.log(event.target.value);
-        
-    }
-    let input =""
-    function recupererText(event){
-      input = event.target.value
-      return input
-    }
-    function afficher (event){
-      console.log(event.target.value);
-    
-      alert(input)
-    }
-    // function updateValue(e) {
-    //     setValue(e.target.value)
+  function afficherTexte(event) {
+    console.log(event);
+    console.log(event.target.value);
+  }
+  let input = "";
+  function recupererText(event) {
+    input = event.target.value;
+    return input;
+  }
+  function afficher(event) {
+    console.log(event.target.value);
 
-    // }
-    // function afficherValue() {
-    //     alert(value)
-    // }
-    function afficherValeur() {
-      alert(valeur.current.value)
-    }
-    function envoyer(){
-      sendData(pays.current.value)
-    }
+    alert(input);
+  }
+  // function updateValue(e) {
+  //     setValue(e.target.value)
+
+  // }
+  // function afficherValue() {
+  //     alert(value)
+  // }
+  function afficherValeur() {
+    alert(valeur.current.value);
+  }
+  function envoyer() {
+    sendData(pays.current.value);
+  }
   return (
     <div>
       <h2>Props</h2>
@@ -134,60 +134,52 @@ function Hello({ nom, children,sendData }) {
       </ul>
       <h2>Exercice</h2>
       <ul>
-        {
-        personnes.map((p) => (
+        {personnes.map((p) => (
           <li key={p.id}>
             {p.prenom} {p.nom}
           </li>
         ))}
       </ul>
       <ul>
-                {
-                    personnes.map(({ id, nom, prenom }) =>
-                        <li
-                            key={id}
-                            className={id % 2 == 0 ? 'rouge' : 'bleu'}
-                        >{prenom} {nom}
-                        </li>
-                    )
-                }
-            </ul>
-            <h2>Evenements</h2>
-            <button onClick={direBonjour}>
-              afficher Bonjour
-            </button>
-             <button onClick={() =>direBonjour('Travolta')}>
-              afficher Bonjour
-            </button>
-            <div>
-                <label htmlFor="texte">Texte</label>
-                <input type="text" onInput={afficherTexte} />
-            </div>
-            <div>
-              <input type="text" onInput ={recupererText} />
-              <button onClick = {afficher}>Afficher</button>
-            </div>
-            <div>
-                <label htmlFor="valeur">Valeur</label>o
-                <input type="text" id='valeur' ref={valeur}  />
-                <button onClick={afficherValeur}>afficher</button>
-            </div>
-        <h2>De l'Enfant au Parent</h2>
-            <div>
-                <input type="text" placeholder='Pays' ref={pays} />
-                <button onClick={envoyer}>
-                    Envoyer au parent
-                </button>
-            </div>
-        
+        {personnes.map(({ id, nom, prenom }) => (
+          <li key={id} className={id % 2 == 0 ? "rouge" : "bleu"}>
+            {prenom} {nom}
+          </li>
+        ))}
+      </ul>
+      <h2>Evenements</h2>
+      <button onClick={direBonjour}>afficher Bonjour</button>
+      <button onClick={() => direBonjour("Travolta")}>afficher Bonjour</button>
+      <div>
+        <label htmlFor="texte">Texte</label>
+        <input type="text" onInput={afficherTexte} />
+      </div>
+      <div>
+        <input type="text" onInput={recupererText} />
+        <button onClick={afficher}>Afficher</button>
+      </div>
+      <div>
+        <label htmlFor="valeur">Valeur</label>o
+        <input type="text" id="valeur" ref={valeur} />
+        <button onClick={afficherValeur}>afficher</button>
+      </div>
+      <h2>De l'Enfant au Parent</h2>
+      <div>
+        <input type="text" placeholder="Pays" ref={pays} />
+        <button onClick={envoyer}>Envoyer au parent</button>
+      </div>
+      <div>
+        <h2>Récupération de valeur globale</h2>
+        <p>{message}</p>
+      </div>
     </div>
-      )
-    function afficherBonjour() {
-        return `Bonjour ${firstname}`
-    }
+  );
+  function afficherBonjour() {
+    return `Bonjour ${firstname}`;
+  }
 }
-function direBonjour(param = 'Doe') {
-    alert(`Bonjour ${param}`)
+function direBonjour(param = "Doe") {
+  alert(`Bonjour ${param}`);
 }
 
 export default Hello;
